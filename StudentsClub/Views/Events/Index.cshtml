@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EvenT>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Събития";
+}
+<h2>Събития</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Дата</th>
+            <th>Описание</th>
+            <th>Член</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var @item in Model)
+        {
+            <tr>
+                <td> @item.NameOfEvent </td>
+                <td> @item.DateOfEvent </td>
+                <td> @item.Description </td>
+                <td> @item.User.FirstName</td>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                        <td>
+
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-primary">Създай събитие</a>
+}
+
+

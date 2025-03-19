@@ -1,0 +1,32 @@
+﻿@model StudentsClub.Models.Events.EditEventViewModel
+@{
+    ViewData["Title"] = "Събития";
+}
+<h2>Редактиране на събитие</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="NameOfEvent">Име</label>
+        <input asp-for="NameOfEvent" class="form-control" />
+        <span asp-validation-for="NameOfEvent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="DateOfEvent">Дата</label>
+        <input asp-for="DateOfEvent" class="form-control" type="date" />
+        <span asp-validation-for="DateOfEvent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Description">Описание</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="UserId">Потребител</label>
+        <select class="form-control" asp-for="UserId" asp-items="ViewBag.UserId">
+            <option value="">Please select an user</option>
+        </select>
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Запази</button>
+</form>
+
