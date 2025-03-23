@@ -23,10 +23,6 @@ namespace StudentsClub.Controllers
             var events = _context.Event.Include(a => a.User).ToList();
             return View(events);
         }
-        public IActionResult Details(int id) 
-        {
-            return View();
-        }
         [HttpGet]
         public IActionResult Create() 
         {
